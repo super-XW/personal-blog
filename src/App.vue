@@ -1,12 +1,23 @@
 <template>
-  <div id="app">
-    
-
-            <router-view></router-view>
-        
-  </div>
+<div>
+  <router-view></router-view>
+</div>
 </template>
 
-<style>
-@import url('./assets/css/indexInit.css');
+<script lang="ts">
+import HelloWorld from './components/HelloWorld.vue'
+
+export default {
+  name: 'App',
+  components: {
+    HelloWorld
+  }
+}
+</script>
+
+
+
+<style lang="less" scoped>
+
+
 </style>
