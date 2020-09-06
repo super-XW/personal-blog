@@ -1,16 +1,19 @@
 <template>
   <div>
-    <a-layout-sider   v-model:collapsed="collapsed"   style="height:100vh;">
+    <a-layout-sider v-model:collapsed="collapsed" collapsible style="height:100vh;" :trigger="null">
       <div class="logo" />
-      <a-menu  mode="inline" theme="dark" v-model:selectedKeys="selectedKeys">
+      <a-menu mode="inline" theme="dark" v-model:selectedKeys="selectedKeys">
         <a-menu-item key="1">
-          <span>nav 1</span>
+          <i class="iconfont">&#xe647;</i>
+          <span v-show="!collapsed">nav 1</span>
         </a-menu-item>
         <a-menu-item key="2">
-          <span>nav 2</span>
+          <i class="iconfont">&#xe647;</i>
+          <span v-show="!collapsed">nav 2</span>
         </a-menu-item>
-        <a-menu-item key="3" >
-          <span>nav 3</span>
+        <a-menu-item key="3">
+          <i class="iconfont">&#xe647;</i>
+          <span v-show="!collapsed">nav 3</span>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
@@ -19,7 +22,8 @@
 
 <script>
 import { useStore } from "vuex";
-import { reactive, ref, computed } from "vue";
+import { reactive, ref, computed, onMounted } from "vue";
+import Axios from "axios";
 
 export default {
   setup(props, context) {
@@ -28,6 +32,9 @@ export default {
       selectedKeys: [],
     });
     const collapsed = computed(() => store.state.collapsed);
+
+    function onMounted() {
+    }
     return {
       collapsed,
       ...state,
@@ -36,5 +43,8 @@ export default {
 };
 </script>
 
-<style >
+<style scoped>
+.iconfont {
+  font-size: 20px;
+}
 </style>

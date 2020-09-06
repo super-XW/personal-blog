@@ -19,6 +19,8 @@ export default {
     const store = useStore();
     function activeSider() {
       store.commit('activeCollapsed');
+      console.log(this.axios,"siofjosjdo");
+
     }
     return {
       activeSider
