@@ -3,7 +3,9 @@
     <index-sider />
     <a-layout>
       <index-header />
-      <index-content />
+      <a-layout-content :style="{  background: '#ccc',  }">
+        <router-view></router-view>
+      </a-layout-content>
     </a-layout>
   </a-layout>
 </template>
@@ -14,14 +16,14 @@ import IndexSider from "./component/IndexSider.vue";
 import IndexHeader from "./component/IndexHeader.vue";
 import IndexContent from "./component/IndexContent.vue";
 export default {
+  name: "Layout",
   components: {
     IndexHeader,
     IndexSider,
     IndexContent,
   },
-  setup(props, context) {
+  setup(props, context: any) {
     const collapsed = ref(false);
-    const selectedKeys = ref("");
     const state = reactive({
       selectedKeys: [],
     });
@@ -39,7 +41,6 @@ export default {
 #components-layout-demo-custom-trigger .trigger {
   font-size: 18px;
   line-height: 64px;
-  padding: 0 24px;
   cursor: pointer;
   transition: color 0.3s;
 }

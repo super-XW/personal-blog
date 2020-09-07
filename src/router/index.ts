@@ -1,6 +1,7 @@
 
 import { createRouter, createWebHistory } from 'vue-router'
 
+import Layout from "../view/layout/index.vue"
 
 // 在 Vue-router新版本中，需要使用createRouter来创建路由
 export default createRouter({
@@ -9,8 +10,19 @@ export default createRouter({
     // 路由地址
     routes: [
         {
-            path:"/",
-            component:() => import("../view/layout/index.vue")
-        }
+            path: "/", 
+            name: "Layout",
+            component: Layout,
+            redirect:"/user",
+            children:[
+                {   
+                    path: "/user/:*",  // <-- notice the colon
+                    name: "User",
+                    component: () => import("../view/user1/index.vue"),
+                },
+            ]
+        },
+        
+
     ]
 })

@@ -11,21 +11,25 @@
 </template>
 
 <script>
-import { ref } from "vue"
-import { useStore } from 'vuex';
+import { ref, inject, watchEffect, computed } from "vue";
+import { useStore } from "vuex";
 export default {
   components: {},
-  setup(props,context) {
+  mounted() {},
+  setup(props, context) {
     const store = useStore();
+    let testMsg = ref(inject("xx"));
+    let testFn = inject("testFn");
     function activeSider() {
-      store.commit('activeCollapsed');
-      console.log(this.axios,"siofjosjdo");
-
+      store.commit("activeCollapsed");
+      testMsg.value = "g‘’";
+      testFn("josdjfosd");
+      console.log(testMsg);
     }
     return {
-      activeSider
-    }
-  }
+      activeSider,
+    };
+  },
 };
 </script>
 
@@ -35,13 +39,12 @@ export default {
 }
 .iconfont {
   font-size: 30px;
-  cursor:pointer;
+  cursor: pointer;
 }
-.iconfont:hover{
-  color:yellowgreen;
+.iconfont:hover {
+  color: yellowgreen;
 }
-.switch{
-  color:#fff;
-
+.switch {
+  color: #fff;
 }
 </style>
