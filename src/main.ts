@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import './index.css'
 import './assets/icon/icon.css'
+import 'animate.css'
 
 import router from './router/index'
 import vuex from './store/index'

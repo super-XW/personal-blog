@@ -36,15 +36,17 @@ export default {
 <style scoped>
 .header_wrap {
   font-size: 16px;
+  background: rgba(42, 42, 34,.8);
 }
 .iconfont {
   font-size: 30px;
   cursor: pointer;
 }
 .iconfont:hover {
-  color: yellowgreen;
+  color: rgb(24, 144, 255);
 }
 .switch {
   color: #fff;
+
 }
 </style>

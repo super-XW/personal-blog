@@ -3,7 +3,6 @@ import { createStore } from 'vuex'
  
  
 interface State {
-  userName: string,
   collapsed: boolean
 }
 
@@ -12,7 +11,6 @@ interface State {
 export default createStore({
   state(): State {
     return {
-      userName: "子君",
       collapsed: false
     };
   },

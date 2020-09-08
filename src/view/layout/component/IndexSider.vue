@@ -1,14 +1,13 @@
 <template>
-  <div>
+  <div class="i_sider">
     <a-layout-sider v-model:collapsed="collapsed" collapsible style="height:100vh;" :trigger="null">
-      <div class="logo" />
-      <a-menu mode="inline" theme="dark" v-model:selectedKeys="selectedKeys">
-        <a-menu-item class="a_menu" @click="handClick" v-for="(item,index) in menuItem" :key="index">
+      <div class="logo"></div>
+      <a-menu mode="vertical" style="background:transparent;box-sizing:border-box;border:none;" v-model:selectedKeys="selectedKeys">
+        <a-menu-item class="a_menu " style="margin:30px 0;" @click="handClick(index)" v-for="(item,index) in menuItem" :key="index">
           <ul class="sider_menu">
-            <router-link tag="li" class="sider_menu_a" :to="item.to" active-class="active_sider">
-              <i class="iconfont">&#xe647;</i>
+            <router-link  class="sider_menu_a" :to="item.to" active-class="active_sider">
+              <i :class='["iconfont",item.menuIcon]'></i>
               <span style="margin-left:8px;" v-show="!collapsed">{{item.menuTitle}}</span>
-              <!-- <i v-show="!collapsed" class="iconfont">&#xe632;</i> -->
             </router-link>
           </ul>
         </a-menu-item>
@@ -20,44 +19,42 @@
 <script>
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import { reactive, ref, computed, onMounted } from "vue";
-import Axios from "axios";
+import { reactive, ref, computed, onMounted,toRefs } from "vue";
 
 export default {
   setup(props, context) {
     const store = useStore();
     const router = useRouter();
     const state = reactive({
-      selectedKeys: [],
       menuItem:[
         {
           menuTitle:"灵魂首页",
-          menuIcon:"",
+          menuIcon:"icon-shouye1",
           to:"/home"
         },
         {
           menuTitle:"心情随笔",
-          menuIcon:"",
-          to:"/informal"
+          menuIcon:"icon-liuyan2",
+          to:"/jottings"
         },
         {
           menuTitle:"学习记录",
-          menuIcon:"",
-          to:"/informal"
+          menuIcon:"icon-xingtuxuetang-kecheng-",
+          to:"/record"
         },
         {
           menuTitle:"技术杂谈",
-          menuIcon:"",
-          to:"/informal"
+          menuIcon:"icon-jishufuwu",
+          to:"/technology"
         },
         {
           menuTitle:"鬼才留言",
-          menuIcon:"",
+          menuIcon:"icon-liuyan-duandian",
           to:"/message"
         },
         {
           menuTitle:"关于我",
-          menuIcon:"",
+          menuIcon:"icon-nb-",
           to:"/me"
         }
       ]
@@ -65,13 +62,16 @@ export default {
     const collapsed = computed(() => store.state.collapsed);
 
     function onMounted() {}
-    function handClick() {
-      router.push("/user");
+
+    let selectedKeys = ref([0]);
+    function handClick(index) {
+      selectedKeys = index;
     }
     return {
       collapsed,
-      ...state,
+      ...toRefs(state),
       handClick,
+      selectedKeys
     };
   },
 };
@@ -93,18 +93,15 @@ export default {
   color: aliceblue;
 }
 .active_sider {
-  color: rgb(6, 248, 127);
+  color: #fff;
 }
-.active_sider::before {
-  content: "";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  right: 0;
-  background: rgba(127, 255, 212, 0.1);
-}
+
 .ant-menu-item {
   width: 100%;
   position: relative;
+}
+.ant-layout-sider{
+  background:url("../../../assets/img/sider_bg.jpg");
+  background-image: 100% 100%;
 }
 </style>

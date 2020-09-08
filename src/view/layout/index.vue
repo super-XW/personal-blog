@@ -3,8 +3,11 @@
     <index-sider />
     <a-layout>
       <index-header />
-      <a-layout-content :style="{  background: '#ccc',  }">
-        <router-view></router-view>
+      <a-layout-content :style="{  padding:'18px'  }">
+          <!-- leave-active-class="animate__animated animate__bounceInLeft" -->
+        <transition name="custom-classes-transition" enter-active-class="animate__animated animate__rotateInUpRight" >
+          <index-content ></index-content>
+        </transition>
       </a-layout-content>
     </a-layout>
   </a-layout>
@@ -22,7 +25,7 @@ export default {
     IndexSider,
     IndexContent,
   },
-  setup(props, context: any) {
+  setup(props: any, context: any) {
     const collapsed = ref(false);
     const state = reactive({
       selectedKeys: [],
@@ -50,8 +53,7 @@ export default {
 }
 
 #components-layout-demo-custom-trigger .logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
+  height: 20px;
   margin: 16px;
 }
 </style>

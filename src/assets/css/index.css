@@ -1,0 +1,7 @@
+/**
+修改ui框架默认样式
+**/
+.ant-menu-item-selected{
+    background: #1890ff!important;
+    
+}   
